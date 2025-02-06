@@ -27,12 +27,12 @@
         document.getElementById('formDiskon').addEventListener('submit', function(event) {
             event.preventDefault(); // Biar halaman nya ga ke refresh
 
-            // Definisiin variabel, konversi ke float sama ngambil id dari form
+            // Kedua Definisiin variabel, konversi ke float sama ngambil id dari form
             var harga = parseFloat(document.getElementById('harga').value);
             var diskon = parseFloat(document.getElementById('diskon').value);
             var output = document.getElementById('output');
 
-            // Validasi input
+            // Ketiga Validasi input sesuai sama yang di soal
             if (isNaN(harga) || harga <= 0) {
                 output.innerHTML = "Masukkan harga yang valid.";
                 return;
@@ -42,10 +42,10 @@
                 return;
             }
 
-            // Ngitung total harga setelah diskon
+            // Keempat Ngitung total harga setelah diskon
             var total_harga = harga - (harga * (diskon / 100));
 
-            // Nampilin hasil
+            // Kelima Nampilin hasil sama di bagusin dikit output nya
             output.innerHTML = `Diskon: ${diskon}% <br> Total Harga Setelah Diskon: Rp ${total_harga.toFixed(2)}`;
         });
     </script>
