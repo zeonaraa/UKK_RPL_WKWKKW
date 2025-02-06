@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perhitungan Diskon</title>
 </head>
 <body>
-    
+    <h2>Aplikasi Perhitungan Diskon</h2>
+    <form id="formDiskon">
+        <label for="harga">Harga Barang:</label>
+        <input type="number" id="harga" name="harga" required>
+        <br><br>
+        
+        <label for="diskon">Diskon (%):</label>
+        <input type="number" id="diskon" name="diskon" required>
+        <br><br>
+
+        <button type="submit">Hitung</button>
+    </form>
+
+    <h3>Hasil Perhitungan:</h3>
+    <p id="output"></p>
+
+    <script>
+        //Pertama ngambil hasil inputan di form sama button nya
+        document.getElementById('formDiskon').addEventListener('submit', function(event) {
+            event.preventDefault(); // Biar halaman nya ga ke refresh
+
+            // Definisiin variabel, konversi ke float sama ngambil id dari form
+            var harga = parseFloat(document.getElementById('harga').value);
+            var diskon = parseFloat(document.getElementById('diskon').value);
+            var output = document.getElementById('output');
+
+            // Validasi input
+            if (isNaN(harga) || harga <= 0) {
+                output.innerHTML = "Masukkan harga yang valid.";
+                return;
+            }
+            if (isNaN(diskon) || diskon < 0 || diskon > 100) {
+                output.innerHTML = "Masukkan diskon antara 0% hingga 100%.";
+                return;
+            }
+
+            // Ngitung total harga setelah diskon
+            var total_harga = harga - (harga * (diskon / 100));
+
+            // Nampilin hasil
+            output.innerHTML = `Diskon: ${diskon}% <br> Total Harga Setelah Diskon: Rp ${total_harga.toFixed(2)}`;
+        });
+    </script>
 </body>
 </html>
