@@ -1,53 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perhitungan Diskon</title>
+    <style>
+        /* Gaya untuk body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f9ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Kontainer utama */
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        /* Gaya form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Input */
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Tombol */
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hasil */
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
-    <h2>Aplikasi Perhitungan Diskon</h2>
-    <form id="formDiskon">
-        <label for="harga">Harga Barang:</label>
-        <input type="number" id="harga" name="harga" required>
-        <br><br>
-        
-        <label for="diskon">Diskon (%):</label>
-        <input type="number" id="diskon" name="diskon" required>
-        <br><br>
 
-        <button type="submit">Hitung</button>
-    </form>
+    <div class="container">
+        <h2>Aplikasi Perhitungan Diskon</h2>
+        <form id="formDiskon">
+            <label for="harga">Harga Barang:</label>
+            <input type="number" id="harga" name="harga" required>
 
-    <h3>Hasil Perhitungan:</h3>
-    <p id="output"></p>
+            <label for="diskon">Diskon (%):</label>
+            <input type="number" id="diskon" name="diskon" required>
+
+            <button type="submit">Hitung</button>
+        </form>
+
+        <h3>Hasil Perhitungan:</h3>
+        <p id="output"></p>
+    </div>
 
     <script>
-        //Pertama ngambil hasil inputan di form sama button nya
-        document.getElementById('formDiskon').addEventListener('submit', function(event) {
+         //Pertama ngambil hasil inputan di form sama button nya
+            document.getElementById('formDiskon').addEventListener('submit', function(event) {
             event.preventDefault(); // Biar halaman nya ga ke refresh
-
-            // Kedua Definisiin variabel, konversi ke float sama ngambil id dari form
+        
+        // Kedua Definisiin variabel, konversi ke float sama ngambil id dari form
             var harga = parseFloat(document.getElementById('harga').value);
             var diskon = parseFloat(document.getElementById('diskon').value);
             var output = document.getElementById('output');
-
-            // Ketiga Validasi input sesuai sama yang di soal
+        
+        // Ketiga Validasi input sesuai sama yang di soal
             if (isNaN(harga) || harga <= 0) {
                 output.innerHTML = "Masukkan harga yang valid.";
+                output.style.color = "red";
                 return;
             }
             if (isNaN(diskon) || diskon < 0 || diskon > 100) {
                 output.innerHTML = "Masukkan diskon antara 0% hingga 100%.";
+                output.style.color = "red";
                 return;
             }
-
-            // Keempat Ngitung total harga setelah diskon
+        
+        // Keempat Ngitung total harga setelah diskon
             var total_harga = harga - (harga * (diskon / 100));
 
-            // Kelima Nampilin hasil sama di bagusin dikit output nya
+        
+        // Kelima Nampilin hasil sama di bagusin dikit output nya
             output.innerHTML = `Diskon: ${diskon}% <br> Total Harga Setelah Diskon: Rp ${total_harga.toFixed(2)}`;
+            output.style.color = "#28a745";
         });
     </script>
+
 </body>
 </html>
